@@ -1,0 +1,9 @@
+server:
+  port: 8012
+logging:
+  level:
+    com.q1sj: debug
+  pattern:
+    level: '%5p [%X{trace-id}]'
+  file:
+    path: ./log

@@ -1,0 +1,12 @@
+server:
+  port: 8010
+zuul:
+  routes:
+    demo1:
+      path: /demo1/**
+      url: http://127.0.0.1:8011
+logging:
+  level:
+    com.q1sj: debug
+  pattern:
+    level: '%5p [%X{trace-id}]'
