@@ -1,10 +1,11 @@
 package com.q1sj.log.demo;
 
-import com.q1sj.log.core.Trace;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
 
 /**
  * @author Q1sj
@@ -27,9 +28,6 @@ public class TestController {
         demo2Api.debug();
         testService.recursion(0);
         log.debug("debug2");
-        log.error("test exception", new RuntimeException("test"));
         return "ok";
     }
-
-
 }

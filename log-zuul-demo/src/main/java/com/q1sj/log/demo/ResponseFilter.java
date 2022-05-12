@@ -40,31 +40,10 @@ public class ResponseFilter extends ZuulFilter {
         String method = request.getMethod();
         String queryString = request.getQueryString();
         String requestBody = getRequestBody();
-        String responseBody = getResponseBody();
-        logger.info("请求路径{},请求方式{} params:{}\nbody:{}\nresp:{}",
+        logger.info("请求路径{},请求方式{} params:{}\nbody:{}\nrespStatusCode:{}",
                 uri, method,
-                queryString, requestBody, responseBody);
+                queryString, requestBody,rc.getResponseStatusCode());
         return null;
-    }
-
-    public String getRequestBody() {
-        // 获取Request上下文
-        RequestContext rc = RequestContext.getCurrentContext();
-
-        HttpServletRequest request = rc.getRequest();
-        try {
-            BufferedReader reader = request.getReader();
-            StringBuilder builder = new StringBuilder();
-            String line = reader.readLine();
-            while (line != null) {
-                builder.append(line);
-                line = reader.readLine();
-            }
-            reader.close();
-            return builder.toString();
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     /**
@@ -92,43 +71,23 @@ public class ResponseFilter extends ZuulFilter {
     }
 
 
-    public String getResponseBody() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        Object zuulResponse = ctx.get("zuulResponse");
-        if (zuulResponse instanceof RibbonHttpResponse){
-            MediaType mediaType = ((RibbonHttpResponse) zuulResponse).getHeaders().getContentType();
-            // 只读取json resp
-            if (mediaType == null
-                    || !mediaType.isCompatibleWith(MediaType.APPLICATION_JSON)) {
-                return "ContentType not application/json";
+    private String getRequestBody() {
+        // 获取Request上下文
+        RequestContext rc = RequestContext.getCurrentContext();
+
+        HttpServletRequest request = rc.getRequest();
+        try {
+            BufferedReader reader = request.getReader();
+            StringBuilder builder = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                builder.append(line);
+                line = reader.readLine();
             }
-        }
-        String ret = ctx.getResponseBody();
-        if (StringUtils.isNotBlank(ret)) {
-            return ret;
-        }
-        InputStream is = ctx.getResponseDataStream();
-        if (is == null) {
+            reader.close();
+            return builder.toString();
+        } catch (Exception e) {
             return null;
         }
-        try {
-            ByteArrayOutputStream result = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) != -1) {
-                result.write(buffer, 0, length);
-            }
-            ret = result.toString();
-            ctx.setResponseBody(ret);
-            return ret;
-        } catch (IOException ex) {
-            // ignore
-        } finally {
-            try {
-                is.close();
-            } catch (IOException ex) {
-            }
-        }
-        return null;
     }
 }

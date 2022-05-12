@@ -24,7 +24,6 @@ public class TestController {
         testService.debug();
         testService.recursion(0);
         log.debug("debug2");
-        log.error("test exception", new RuntimeException("test"));
         return "ok";
     }
 
