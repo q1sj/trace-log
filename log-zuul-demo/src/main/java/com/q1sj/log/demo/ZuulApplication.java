@@ -17,12 +17,4 @@ public class ZuulApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZuulApplication.class, args);
     }
-    @Bean
-    public TracePreZuulFilter tracePreZuulFilter(){
-        return new TracePreZuulFilter();
-    }
-    @Bean
-    public TracePostZuulFilter tracePostZuulFilter(){
-        return new TracePostZuulFilter();
-    }
 }

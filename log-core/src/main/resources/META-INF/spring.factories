@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.q1sj.log.core.TraceLogAutoConfiguration,\
+com.q1sj.log.core.TraceZuulFilterAutoConfiguration,\
+com.q1sj.log.core.TraceFeignRequestAutoConfiguration

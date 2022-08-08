@@ -6,8 +6,9 @@
 
     <groupId>com.q1sj</groupId>
     <artifactId>trace-log</artifactId>
+    <version>1.0.2-RELEASE</version>
+
     <packaging>jar</packaging>
-    <version>1.0.1-RELEASE</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

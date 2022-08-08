@@ -79,7 +79,9 @@ public class TraceUtils {
             return false;
         }
         MDC.put(MDC_TRACE_ID_KEY, traceId);
-        log.debug("put {}", MDC_TRACE_ID_KEY);
+        if (log.isTraceEnabled()) {
+            log.trace("put {}", MDC_TRACE_ID_KEY);
+        }
         return true;
     }
 
@@ -87,7 +89,9 @@ public class TraceUtils {
      * 移除{@link MDC}中的追踪id
      */
     protected static void removeId() {
-        log.debug("remove {}", MDC_TRACE_ID_KEY);
+        if (log.isTraceEnabled()) {
+            log.trace("remove {}", MDC_TRACE_ID_KEY);
+        }
         MDC.remove(MDC_TRACE_ID_KEY);
     }
 

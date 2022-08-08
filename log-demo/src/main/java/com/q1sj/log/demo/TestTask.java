@@ -18,15 +18,17 @@ import org.springframework.stereotype.Component;
 public class TestTask {
     @Autowired
     private TestService testService;
-
+    @Autowired
+    private Demo2Api demo2Api;
     @Trace
     @Scheduled(fixedRate = 30000)
     public void run(){
-        log.debug("debug");
+        log.debug("task debug");
         testService.asyncDebug();
         testService.debug();
         testService.debug();
+        demo2Api.debug();
         testService.recursion(0);
-        log.debug("debug2");
+        log.debug("task debug2");
     }
 }
