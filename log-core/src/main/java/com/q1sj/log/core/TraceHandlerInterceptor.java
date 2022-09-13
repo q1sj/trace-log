@@ -20,6 +20,9 @@ public class TraceHandlerInterceptor implements HandlerInterceptor {
         } else {
             TraceUtils.putId(traceId);
         }
+
+        response.addHeader("Access-Control-Expose-Headers", TraceUtils.MDC_TRACE_ID_KEY);
+        response.setHeader(TraceUtils.MDC_TRACE_ID_KEY, TraceUtils.currentId());
         return true;
     }
 

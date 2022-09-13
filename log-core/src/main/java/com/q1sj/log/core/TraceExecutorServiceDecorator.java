@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
  * @author Q1sj
  * @date 2022.5.5 17:16
  */
-public class TraceExecutorServiceImpl implements ExecutorService {
+public class TraceExecutorServiceDecorator implements ExecutorService {
 
     private final ExecutorService executorService;
 
-    public TraceExecutorServiceImpl(ExecutorService executorService) {
+    public TraceExecutorServiceDecorator(ExecutorService executorService) {
         this.executorService = executorService;
     }
 

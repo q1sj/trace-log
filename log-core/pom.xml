@@ -6,7 +6,7 @@
 
     <groupId>com.q1sj</groupId>
     <artifactId>trace-log</artifactId>
-    <version>1.0.2-RELEASE</version>
+    <version>1.0.4-RELEASE</version>
 
     <packaging>jar</packaging>
     <properties>
@@ -83,10 +83,14 @@
     </build>
     <distributionManagement>
         <repository>
-            <!-- 需要和 maven中的 id一致-->
-            <id>xsy-web-base-releases</id>
-            <name>xsy-web-base-releases</name>
-            <url>http://192.168.2.24:18001/repository/maven-releases/</url>
+            <id>nexus-releases</id>
+            <name>nexus-releases</name>
+            <url>http://192.168.2.6:8081/repository/maven-releases/</url>
         </repository>
+        <!--<repository>
+            <id>nexus-releases</id>
+            <name>nexus-snapshots</name>
+            <url>http://192.168.2.6:8081/repository/maven-snapshots/</url>
+        </repository>-->
     </distributionManagement>
 </project>
