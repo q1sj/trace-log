@@ -28,11 +28,11 @@ public class TraceLogAutoConfiguration {
     @Bean(AsyncExecutionAspectSupport.DEFAULT_TASK_EXECUTOR_BEAN_NAME)
     @ConditionalOnMissingBean(name = AsyncExecutionAspectSupport.DEFAULT_TASK_EXECUTOR_BEAN_NAME)
     public ThreadPoolTaskExecutor traceThreadPool() {
-        log.debug("init {}", AsyncExecutionAspectSupport.DEFAULT_TASK_EXECUTOR_BEAN_NAME);
+        log.debug("init "+ AsyncExecutionAspectSupport.DEFAULT_TASK_EXECUTOR_BEAN_NAME);
         // 修改@Async 默认线程池
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new TraceThreadPoolTaskExecutor();
         threadPoolTaskExecutor.setThreadNamePrefix("traceExecutor-");
-        threadPoolTaskExecutor.setMaxPoolSize(16);
+        threadPoolTaskExecutor.setMaxPoolSize(Runtime.getRuntime().availableProcessors() * 2);
         return threadPoolTaskExecutor;
     }
 
