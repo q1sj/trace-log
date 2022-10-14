@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LogTest {
 
-    static ExecutorService threadPool = new TraceExecutorServiceImpl(Executors.newFixedThreadPool(1));
+    static ExecutorService threadPool = new TraceExecutorServiceDecorator(Executors.newFixedThreadPool(1));
 
     @Test
     public void testAppender() {

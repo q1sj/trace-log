@@ -92,5 +92,10 @@
             <name>nexus-snapshots</name>
             <url>http://192.168.2.6:8081/repository/maven-snapshots/</url>
         </repository>-->
+        <!--<repository>
+            <id>github</id>
+            <name>q1sj</name>
+            <url>https://maven.pkg.github.com/q1sj/trace-log</url>
+        </repository>-->
     </distributionManagement>
 </project>
