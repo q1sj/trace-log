@@ -37,7 +37,7 @@
             <version>2.2.1.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>com.q1sj</groupId>
+            <groupId>io.github.q1sj</groupId>
             <artifactId>trace-log</artifactId>
             <version>1.0.4-RELEASE</version>
         </dependency>
