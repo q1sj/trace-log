@@ -27,7 +27,7 @@ public class TestTask {
         testService.asyncDebug();
         testService.debug();
         testService.debug();
-        demo2Api.debug();
+//        demo2Api.debug();
         testService.recursion(0);
         log.debug("task debug2");
     }
