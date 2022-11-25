@@ -1,14 +1,11 @@
 package com.q1sj.log.core;
 
-import ch.qos.logback.classic.LoggerContext;
-import com.ofpay.logback.TtlMdcListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.interceptor.AsyncExecutionAspectSupport;
+import org.slf4j.TtlMDCAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -35,12 +32,8 @@ public class TraceLogAutoConfiguration {
     }
 
     @Bean
-    public TtlMdcListener ttlMdcListener() {
-        TtlMdcListener ttlMdcListener = new TtlMdcListener();
-        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        ttlMdcListener.setContext(lc);
-        ttlMdcListener.start();
-        return ttlMdcListener;
+    public TtlMDCAdapter ttlMDCAdapter() {
+        return (TtlMDCAdapter) TtlMDCAdapter.getInstance();
     }
 
     public static class TraceWebMvcConfigurer implements WebMvcConfigurer {
