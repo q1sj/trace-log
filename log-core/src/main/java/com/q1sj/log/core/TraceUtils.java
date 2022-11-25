@@ -19,43 +19,6 @@ public class TraceUtils {
     private static final Logger log = LoggerFactory.getLogger(TraceUtils.class);
 
     /**
-     * 包装runnable对象 拷贝MDC中内容到子线程
-     *
-     * @param runnable
-     * @return
-     */
-    public static Runnable packing(Runnable runnable) {
-        Map<String, String> copyOfContextMap = MDC.getCopyOfContextMap();
-        return () -> {
-            MDC.setContextMap(copyOfContextMap);
-            try {
-                runnable.run();
-            } finally {
-                MDC.clear();
-            }
-        };
-    }
-
-    /**
-     * 包装callable对象 拷贝MDC中内容到子线程
-     *
-     * @param callable
-     * @param <T>
-     * @return
-     */
-    public static <T> Callable<T> packing(Callable<T> callable) {
-        Map<String, String> copyOfContextMap = MDC.getCopyOfContextMap();
-        return () -> {
-            MDC.setContextMap(copyOfContextMap);
-            try {
-                return callable.call();
-            } finally {
-                MDC.clear();
-            }
-        };
-    }
-
-    /**
      * @return 当前线程 traceId
      */
     public static String currentId() {
